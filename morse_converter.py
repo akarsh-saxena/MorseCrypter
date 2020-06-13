@@ -43,8 +43,9 @@ def convertMorseToText(s):
 
     return (morse_to_text.get(s))
 
+
 def convertTextToMorse(s):
-
-	text_to_morse = {v: k for k, v in morse_to_text.items()}
-
+    
+    text_to_morse = {v: k for k, v in morse_to_text.items()}
+    
     return (text_to_morse.get(s))
