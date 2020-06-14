@@ -1,13 +1,15 @@
-from morse_converter import convertTextToMorse
+import math
+import time
+import wave
+import struct
+import winsound
+import tempfile
+
 import cv2
 import pytesseract
-import winsound
-import time
-import tempfile
-import wave
-import math
-import struct
 import numpy as np
+import streamlit as st
+from morse_converter import convertTextToMorse
 
 time_unit = 0.1
 
@@ -31,16 +33,16 @@ def write_signal(wavef, duration, volume=0, rate=44100.0, frequency=1240.0):
     frequency = 1240.0    # hertz
     """
     for i in range(int(duration * rate * duration)):
-            # max volume 32767.0
-            value = int(volume*math.sin(frequency*math.pi*float(i)/float(rate)))
-            data = struct.pack('<h', value)
-            wavef.writeframesraw(data)
+        # max volume 32767.0
+        value = int(volume*math.sin(frequency*math.pi*float(i)/float(rate)))
+        data = struct.pack('<h', value)
+        wavef.writeframesraw(data)
 
 
 def morse_to_wav(text, file_=None):
 
     char2signal = {'.': 0.2, '-': 0.4, '/': 0.5, ' ': 0.2}
-    file_ = './morse.wav' #tempfile.mkstemp(".wav")
+    file_ = tempfile.NamedTemporaryFile(suffix=".wav", dir='./').name.split('\\')[-1]
 
     wav = wave.open(file_, 'wb')
     wav.setnchannels(1) # mono
@@ -65,7 +67,8 @@ def morse_to_vid(text):
 
     char2signal = {'.': 0.2, '-': 0.4, '/': 0.5, ' ': 0.2}
 
-    out = cv2.VideoWriter('./morse.webm',cv2.VideoWriter_fourcc(*'VP90'), 20, (width, height))
+    video_file = tempfile.NamedTemporaryFile(suffix=".webm", dir='./').name.split('\\')[-1]
+    out = cv2.VideoWriter(video_file,cv2.VideoWriter_fourcc(*'VP90'), 20, (width, height))
 
     for char in text:
         frame = np.zeros((height,width,3), np.uint8)
@@ -76,6 +79,8 @@ def morse_to_vid(text):
         out.write(np.zeros((height,width,3), np.uint8))
 
     out.release()
+
+    return video_file
 
 
 def encode_image(image):
@@ -90,7 +95,7 @@ def encode_image(image):
 
 
 def encode_text(text):
-    
+
     s = [convertTextToMorse(i.lower()) for i in text]
 
     s = [i for i in s if i is not None]
@@ -107,3 +112,7 @@ def play(s):
                     dash()
             time.sleep(time_unit*3)
         time.sleep(time_unit*7)
+
+@st.cache(allow_output_mutation=True)
+def get_static_store():
+    return {'copy': True, 'key': None}
