@@ -1,5 +1,4 @@
 body {
-    /* background-color: #eee; */
     background-color: #f8f8ff;
 }
 
@@ -22,3 +21,6 @@ footer {visibility: hidden;}
 .stTextInput>div>div>input {
     background-color: #004fff29;
 }
+
+.connect_button{    
+    width: 10% ;}
