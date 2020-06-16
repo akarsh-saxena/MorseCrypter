@@ -1,6 +1,10 @@
 import streamlit as st
+import utils
 
 def write(_):
+
+    cache = utils.get_static_store()
+    cache['copy'] = None
 
     st.image("https://hackster.imgix.net/uploads/attachments/583295/blob_H3sQ6UPdXT.blob?auto=compress%2Cformat&w=900&h=675&fit=min", use_column_width=True)
 
