@@ -2,7 +2,6 @@ import math
 import time
 import wave
 import struct
-import winsound
 import tempfile
 
 import cv2
@@ -12,18 +11,6 @@ import streamlit as st
 from morse_converter import convertTextToMorse
 
 time_unit = 0.1
-
-
-def dot():
-    winsound.Beep(600, int(time_unit*1000))
-    print('dot')
-    time.sleep(time_unit)
-
-
-def dash():
-    winsound.Beep(500, int(time_unit*1000*3))
-    time.sleep(time_unit)
-    print('dash')
 
 
 def write_signal(wavef, duration, volume=0, rate=44100.0, frequency=1240.0):
@@ -101,17 +88,6 @@ def encode_text(text):
     s = [i for i in s if i is not None]
 
     return text, s
-
-def play(s):
-    for word in s:
-        for ch in word:
-            for i in ch:
-                if i=='.':
-                    dot()
-                elif i=='-':
-                    dash()
-            time.sleep(time_unit*3)
-        time.sleep(time_unit*7)
 
 @st.cache(allow_output_mutation=True)
 def get_static_store():
