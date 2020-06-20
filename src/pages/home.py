@@ -1,5 +1,5 @@
 import streamlit as st
-import utils
+from .. import utils
 
 def write(_):
 

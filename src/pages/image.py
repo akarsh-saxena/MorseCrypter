@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 import streamlit as st
 from pandas.io.clipboard import copy as copy_to_clipboard
-import utils
+from .. import utils
 
 @st.cache(allow_output_mutation=True)
 def encode_image(image):

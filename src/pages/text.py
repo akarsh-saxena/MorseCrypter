@@ -3,7 +3,7 @@ import base64
 import streamlit as st
 
 from pandas.io.clipboard import copy as copy_to_clipboard
-import utils
+from .. import utils
 
 
 def encode_text(inp):

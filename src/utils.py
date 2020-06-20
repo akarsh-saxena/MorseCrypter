@@ -8,7 +8,7 @@ import cv2
 import pytesseract
 import numpy as np
 import streamlit as st
-from morse_converter import convertTextToMorse
+from .morse_converter import convertTextToMorse
 
 time_unit = 0.1
 

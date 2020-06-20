@@ -1,8 +1,8 @@
 import importlib
 import streamlit as st
 
-import utils
-from pages import home, text, image, guide
+import src.utils
+from src.pages import home, text, image, guide
 
 def write_page(page, cache):  # pylint: disable=redefined-outer-name
     """Writes the specified page/module
@@ -31,14 +31,14 @@ PAGES = {
     'Guide': guide
 }
 
-with open("style.css") as f:
+with open("src/style.css") as f:
     st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
 
 def main():
 
     st.sidebar.title("Navigation")
 
-    cache = utils.get_static_store()
+    cache = src.utils.get_static_store()
 
     selection = st.sidebar.radio("Go to", list(PAGES.keys()))
 
