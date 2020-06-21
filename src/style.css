@@ -24,3 +24,7 @@ footer {visibility: hidden;}
 
 .connect_button{    
     width: 10% ;}
+
+audio:focus {
+    outline: none;
+}

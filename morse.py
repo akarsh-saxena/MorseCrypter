@@ -61,7 +61,7 @@ def main():
 
     st.sidebar.markdown('<br />', unsafe_allow_html=True)
 
-    st.sidebar.title("Reach me out")
+    st.sidebar.title("Reach me out at")
 
     st.sidebar.markdown("""
 

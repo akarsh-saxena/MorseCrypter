@@ -9,6 +9,7 @@ import numpy as np
 import streamlit as st
 from .morse_converter import convertTextToMorse
 
+# For heroku
 pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
 
 time_unit = 0.1
