@@ -76,11 +76,11 @@ def write(cache):
             st.markdown('### Morse code :   **'+text+'**', unsafe_allow_html=True)
             st.markdown('&nbsp; &nbsp;')
 
-            copy = st.button('Copy')
+            # copy = st.button('Copy')
 
-            if copy:
-                cache['copy'] = copy
-                copy_code(text)
+            # if copy:
+            #     cache['copy'] = copy
+            #     copy_code(text)
             
             st.markdown('&nbsp;')
             audio_file = play_audio(text)
