@@ -3,4 +3,4 @@ streamlit==0.61.0
 pytesseract==0.2.6
 opencv-python==3.4.1.15
 pandas==0.22.0
-Pillow==7.1.2
+Pillow==8.1.1
